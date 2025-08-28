@@ -8,6 +8,10 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
+<!-- Flatpickr لتقويم الميلادي -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <style>
 @font-face {
   font-family: 'HelveticaNeueW23';
@@ -150,7 +154,7 @@ button {
   <div><label>اسم الطالب</label><input type="text"></div>
   <div><label>الصف</label><input type="text"></div>
   <div><label>اليوم</label><input type="text"></div>
-  <div><label>التاريخ</label><input type="text"></div>
+  <div><label>التاريخ</label><input type="text" id="datePicker" placeholder="اختر التاريخ"></div>
 </div>
 
 <!-- الصف الرابع: قوائم منسدلة 0%-100% -->
@@ -215,6 +219,13 @@ button {
 <script>
 // إغلاق التنويه
 function closePopup() { document.getElementById("popupOverlay").style.display = "none"; }
+
+// تهيئة Flatpickr لخانة التاريخ مع تعيين التاريخ الحالي تلقائيًا وتنسيق d-m-Y
+flatpickr("#datePicker", {
+  dateFormat: "d-m-Y",  // يوم-شهر-سنة
+  allowInput: true,
+  defaultDate: "today"   // التاريخ الحالي تلقائيًا
+});
 
 // دالة التقدير حسب النسبة
 function ratingText(val){
